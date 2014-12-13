@@ -21,4 +21,4 @@ mkdir -p ${OPENSHIFT_DATA_DIR}.mongodb/data
 echo "mongodb://$OPENSHIFT_GEAR_DNS:$OPENSHIFT_MONGODB_PROXY_PORT/" > $OPENSHIFT_MONGODB_DIR/env/MONGODB_URL
 
 # Output result
-client_result "MongoDB ${2} installed - use $MONGODB_URL environment variable to connect your application.'
+client_result "MongoDB ${2} installed - use $MONGODB_URL environment variable to connect your application."

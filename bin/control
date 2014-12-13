@@ -1,0 +1,86 @@
+#!/bin/bash
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+source $HOME/mongodb/lib/util
+
+function is_running() {
+  if [ -z "$(ps -ef | grep 'mongod --nounixsocket' | grep -v grep)" ]; then
+    return 1
+  else
+    return 0
+  fi
+}
+
+function start() {
+  if is running; then
+    client_result 'MongoDB is already running.'
+  else
+    client_message 'Starting MongoDB...'
+    nohup ${OPENSHIFT_DATA_DIR}.mongodb/bin/mongod \
+      --nounixsocket                               \
+      --smallfiles                                 \
+      --dbpath ${OPENSHIFT_DATA_DIR}.mongodb/data  \
+      --bind_ip $OPENSHIFT_MONGODB_IP              \
+      |& /usr/bin/logshifter -tag mongodb &
+    i=0
+    while ! is_running && [ $i -lt 60 ]; do
+      sleep 1
+      i=$(($i + 1))
+    done
+    if is_running; then
+      client_result 'MongoDB started.'
+    else
+      client_result 'Warning! Could not start MongoDB!'
+      exit 1
+    fi
+  fi
+}
+
+function stop() {
+  if ! is_running; then
+      client_result 'MongoDB is already stopped.'
+  else
+    client_message 'Stopping MongoDB...'
+    kill "$(ps -ef | grep 'mongod --nounixsocket' | grep -v grep | awk '{ print $2 }')" > /dev/null 2>&1
+    i=0
+    while is_running && [ $i -lt 60 ]; do
+      sleep 1
+      i=$(($i + 1))
+    done
+    if is_running; then
+      client_result 'Warning! Could not stop MongoDB!'
+      exit 1
+    else
+      client_result 'MongoDB stopped.'
+    fi
+  fi
+}
+
+function restart() {
+  stop
+  start
+}
+
+function status() {
+  if is_running; then
+    client_result 'MongoDB appears to be running.'
+  else
+    client_result 'MongoDB appears to be stopped.'
+  fi
+}
+
+function tidy() {
+  shopt -s dotglob
+  client_message "Emptying logs in ${OPENSHIFT_LOG_DIR}..."
+  rm -rf ${OPENSHIFT_LOG_DIR}/*.log*
+  client_message 'Done.'
+}
+
+case ${1} in
+  start)   start   ;;
+  stop)    stop    ;;
+  restart) restart ;;
+  status)  status  ;;
+  tidy)    tidy    ;;
+  *)       exit 0
+esac

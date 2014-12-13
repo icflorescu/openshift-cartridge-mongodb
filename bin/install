@@ -1,0 +1,24 @@
+#!/bin/bash
+
+source $OPENSHIFT_CARTRIDGE_SDK_BASH
+
+# Download
+curl -L -o ${OPENSHIFT_DATA_DIR}tmp.tgz http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-${2}.tgz
+
+# Create bin directory if necessary
+mkdir -p ${OPENSHIFT_DATA_DIR}.mongodb/bin
+
+# Copy just the mongod binary
+tar -xvzf ${OPENSHIFT_DATA_DIR}tmp.tgz --strip-components=1 -C ${OPENSHIFT_DATA_DIR}.mongodb mongodb-linux-x86_64-${2}/bin/mongod
+
+# Remove downloaded archive
+rm ${OPENSHIFT_DATA_DIR}tmp.tgz
+
+# Create data directory if necessary
+mkdir -p ${OPENSHIFT_DATA_DIR}.mongodb/data
+
+# Add environment variable
+echo "mongodb://$OPENSHIFT_GEAR_DNS:$OPENSHIFT_MONGODB_PROXY_PORT/" > $OPENSHIFT_MONGODB_DIR/env/MONGODB_URL
+
+# Output result
+client_result "MongoDB ${2} installed - use $MONGODB_URL environment variable to connect your application.'

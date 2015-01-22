@@ -1,12 +1,12 @@
 ---
 Name: mongodb
-Description: MongoDB cartridge version 2.6.6.
-Version: '2.6.6'
+Description: MongoDB cartridge version 2.6.7.
+Version: '2.6.7'
 License: MongoDB License
 License-Url: http://www.mongodb.org/about/licensing/
 Vendor: www.mongodb.org
 Website: http://www.mongodb.org/
-Display-Name: MongoDB 2.6.6
+Display-Name: MongoDB 2.6.7
 Cartridge-Short-Name: MONGODB
 Cartridge-Version: '1.0.0'
 Cartridge-Vendor: icflorescu

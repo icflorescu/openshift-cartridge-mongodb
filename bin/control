@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
-source $HOME/mongodb/lib/util
 
 function is_running() {
   if [ -z "$(ps -ef | grep 'mongod --nounixsocket' | grep -v grep)" ]; then
@@ -12,7 +11,7 @@ function is_running() {
 }
 
 function start() {
-  if is running; then
+  if is_running; then
     client_result 'MongoDB is already running.'
   else
     client_message 'Starting MongoDB...'

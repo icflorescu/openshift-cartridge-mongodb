@@ -22,6 +22,7 @@ function start() {
       --bind_ip $OPENSHIFT_MONGODB_IP              \
       --quiet                                      \
       --logRotate reopen                           \
+      --logappend                                  \
       |& /usr/bin/logshifter -tag mongodb &
     i=0
     while ! is_running && [ $i -lt 60 ]; do

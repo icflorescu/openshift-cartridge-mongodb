@@ -3,10 +3,10 @@
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
 function is_running() {
-  if [ ! -z "$(ps -ef | grep 'mongod --nounixsocket' | grep -v grep)" ]; then
-    return 1
-  else
+  if [ -z "$(ps -ef | grep 'mongod --nounixsocket' | grep -v grep)" ]; then
     return 0
+  else
+    return 1
   fi
 }
 

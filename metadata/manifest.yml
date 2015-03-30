@@ -8,7 +8,7 @@ Vendor: www.mongodb.org
 Website: http://www.mongodb.org/
 Display-Name: MongoDB 3.0.1
 Cartridge-Short-Name: MONGODB
-Cartridge-Version: '1.0.1'
+Cartridge-Version: '1.1.0'
 Cartridge-Vendor: icflorescu
 Categories:
 - service

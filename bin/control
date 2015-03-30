@@ -18,9 +18,11 @@ function start() {
     client_message 'Starting MongoDB...'
     nohup ${OPENSHIFT_DATA_DIR}.mongodb/bin/mongod \
       --nounixsocket                               \
-      --smallfiles                                 \
+      --storageEngine wiredTiger                   \
       --dbpath ${OPENSHIFT_DATA_DIR}.mongodb/data  \
       --bind_ip $OPENSHIFT_MONGODB_IP              \
+      --quiet                                      \
+      --logRotate reopen                           \
       |& /usr/bin/logshifter -tag mongodb &
     i=0
     while ! is_running && [ $i -lt 60 ]; do

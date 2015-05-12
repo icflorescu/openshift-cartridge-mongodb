@@ -16,10 +16,22 @@ To install this cartridge in your existing OpenShift application, go to **"See t
 
     http://cartreflect-claytondev.rhcloud.com/github/icflorescu/openshift-cartridge-mongodb
 
+Then you can use `MONGODB_URL` environment variable to connect from an application running in the main web cartridge.
+
+To keep things flexible, the connection string stored in `MONGODB_URL` ends with `/` and **does not include a database name**. Use your application logic to name/create your database(s) as needed. 
+
+For instance, here's how you'd do it in a Node.js application using [Mongoose ODM](http://mongoosejs.com/):
+
+    var mongoose = require('mongoose');
+    ...
+    // Mongoose will create database_name if necessary
+    mongoose.connect(process.env.MONGODB_URL + 'database_name', { db: { nativeParser: true } });
+
 ## Notes
 
 - Can't guarantee this cartridge is production-ready. Some people use it though (on **their own responsibility**).
 - This is a lean cartridge. To save space, just `mongod` is installed. No client libraries, no `mongo` console. If you need external access to your data, use `rhc port-forward`.
+- By default, the underlying MongoDB instance will accept unauthenticated access, which should be fine for most typical usage scenarios. See [the discussion here](https://github.com/icflorescu/openshift-cartridge-mongodb/issues/1) for more info.
 - Can't think of a way to make this cartridge auto-updatable. There's nothing like [semver.io](http://semver.io) for MongoDB. For now we'll just have to use `mongodump`, destroy the cartridge, install the new version, then do a `mongorestore`.
 - Don't hesitate to make a pull-request with an updated version in [this file](https://github.com/icflorescu/openshift-cartridge-mongodb/blob/master/metadata/manifest.yml#L4) if you notice this cartridge version is behind  the latest stable [official MongoDB linux binary](http://www.mongodb.org/downloads).
 

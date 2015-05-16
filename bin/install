@@ -17,8 +17,12 @@ rm ${OPENSHIFT_DATA_DIR}tmp.tgz
 # Create data directory if necessary
 mkdir -p ${OPENSHIFT_DATA_DIR}.mongodb/data
 
-# Add environment variable
-echo "mongodb://$OPENSHIFT_GEAR_DNS:$OPENSHIFT_MONGODB_PROXY_PORT/" > $OPENSHIFT_MONGODB_DIR/env/MONGODB_URL
+# Add MONGODB_URL environment variable
+if [ -z "$OPENSHIFT_MONGODB_PROXY_PORT" ]; then
+  echo "mongodb://$OPENSHIFT_GEAR_DNS:$OPENSHIFT_MONGODB_PROXY_PORT/" > $OPENSHIFT_MONGODB_DIR/env/MONGODB_URL
+else
+  echo "mongodb://$OPENSHIFT_MONGODB_IP:$OPENSHIFT_MONGODB_PORT/" > $OPENSHIFT_MONGODB_DIR/env/MONGODB_URL
+fi
 
 # Output result
 client_result "MongoDB ${2} installed - use \$MONGODB_URL environment variable to connect your application."

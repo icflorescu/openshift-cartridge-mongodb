@@ -19,9 +19,10 @@ mkdir -p ${OPENSHIFT_DATA_DIR}.mongodb/data
 
 # Add MONGODB_URL environment variable
 if [ -z "$OPENSHIFT_MONGODB_PROXY_PORT" ]; then
-  # Since $OPENSHIFT_MONGODB_PROXY_PORT is missing, MongoDB must be running in the main gear
+  # Since $OPENSHIFT_MONGODB_PROXY_PORT is missing, cartridge must be running in the main gear
   echo "mongodb://$OPENSHIFT_MONGODB_IP:$OPENSHIFT_MONGODB_PORT/" > $OPENSHIFT_MONGODB_DIR/env/MONGODB_URL
 else
+  # Found $OPENSHIFT_MONGODB_PROXY_PORT, the cartridge is running in a separate gear
   echo "mongodb://$OPENSHIFT_GEAR_DNS:$OPENSHIFT_MONGODB_PROXY_PORT/" > $OPENSHIFT_MONGODB_DIR/env/MONGODB_URL
 fi
 

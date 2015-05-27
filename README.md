@@ -41,4 +41,4 @@ Since you're here, chances are you might also be interested in this [custom Node
 
 ## License
 
-The [MIT License](http://github.com/icflorescu/openshift-cartridge-nodejs/LICENSE).
+The [MIT License](http://github.com/icflorescu/openshift-cartridge-mongodb/LICENSE).

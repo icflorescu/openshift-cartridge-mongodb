@@ -35,6 +35,13 @@ For instance, here's how you'd do it in a Node.js application using [Mongoose OD
 - Can't think of a way to make this cartridge auto-updatable. There's nothing like [semver.io](http://semver.io) for MongoDB. For now we'll just have to use `mongodump`, destroy the cartridge, install the new version, then do a `mongorestore`.
 - Don't hesitate to make a pull-request with an updated version in [this file](https://github.com/icflorescu/openshift-cartridge-mongodb/blob/master/metadata/manifest.yml#L4) if you notice this cartridge version is behind  the latest stable [official MongoDB linux binary](http://www.mongodb.org/downloads).
 
+## FAQ
+
+**Q**: I'm getting the error *Cannot download, must be smaller than 20480 bytes* while trying to deploy the cartridge to OpenShift. What am I doing wrong?
+  
+**A**: You're probably trying to use the URL `https://github.com/icflorescu/openshift-cartridge-mongodb` instead of
+`http://cartreflect-claytondev.rhcloud.com/github/icflorescu/openshift-cartridge-mongodb`. A common mistake for people not paying sufficient attention while trying to use a custom cartridge for the first time.
+
 ## Related
 
 Since you're here, chances are you might also be interested in this [custom Node.js cartridge](https://github.com/icflorescu/openshift-cartridge-nodejs).

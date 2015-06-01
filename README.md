@@ -1,3 +1,5 @@
+[![Project Status](https://stillmaintained.com/icflorescu/openshift-cartridge-mongodb.png)](https://stillmaintained.com/icflorescu/openshift-cartridge-mongodb)
+
 # Custom MongoDB application cartridge for OpenShift
 
 This is a custom MongoDB cartridge.

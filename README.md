@@ -1,4 +1,4 @@
-# Custom MongoDB application cartridge for OpenShift
+# Custom MongoDB cartridge for OpenShift
 
 This is a custom MongoDB cartridge.
 

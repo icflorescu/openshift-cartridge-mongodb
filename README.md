@@ -1,6 +1,6 @@
 # Custom MongoDB cartridge for OpenShift
 
-This is a custom MongoDB cartridge.
+This is a custom OpenShift cartridge providing MongoDB > 3.0.3.
 
 ## Why
 

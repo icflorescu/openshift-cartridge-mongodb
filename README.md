@@ -1,5 +1,7 @@
 # Custom MongoDB cartridge for OpenShift
 
+![mongodb-openshift](https://cloud.githubusercontent.com/assets/581999/12489962/b871e770-c07b-11e5-97c2-d8592e4509fb.png)
+
 This is a custom OpenShift cartridge providing MongoDB 3.2.0 + WiredTiger storage engine.
 
 ## Why

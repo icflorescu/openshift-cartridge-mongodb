@@ -54,4 +54,4 @@ If you find this repo useful, don't hesitate to give it a star and [spread the w
 
 ## License
 
-The [MIT License](http://github.com/icflorescu/openshift-cartridge-mongodb/LICENSE).
+The [MIT License](http://github.com/icflorescu/openshift-cartridge-mongodb/blob/master/LICENSE).

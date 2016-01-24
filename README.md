@@ -1,5 +1,7 @@
 # Custom MongoDB cartridge for OpenShift
 
+![mongodb-openshift](https://cloud.githubusercontent.com/assets/581999/12489962/b871e770-c07b-11e5-97c2-d8592e4509fb.png)
+
 This is a custom OpenShift cartridge providing MongoDB 3.2.0 + WiredTiger storage engine.
 
 ## Why
@@ -50,7 +52,7 @@ Since you're here, chances are you might also be interested in this [custom Node
 
 See contributors [here](https://github.com/icflorescu/openshift-cartridge-nodejs/graphs/contributors).
 
-If you find this repo useful, don't hesitate to give it a star and [spread the word](http://twitter.com/share?text=Checkout%20this%20custom%20MongoDB%20cartridge%20for%20OpenShift!&amp;url=http%3A%2F%2Fgithub.com/icflorescu/openshift-cartridge-nodejs&amp;hashtags=mongodb,openshift&amp;via=icflorescu).
+If you find this repo useful, don't hesitate to give it a star and [spread the word](http://twitter.com/share?text=Checkout%20this%20custom%20MongoDB%20cartridge%20for%20OpenShift!&amp;url=http%3A%2F%2Fgithub.com/icflorescu/openshift-cartridge-mongodb&amp;hashtags=mongodb,openshift,nodejs&amp;via=icflorescu).
 
 ## License
 

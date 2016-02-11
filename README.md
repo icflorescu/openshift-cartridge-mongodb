@@ -44,6 +44,10 @@ For instance, here's how you'd do it in a Node.js application using [Mongoose OD
 **A**: You're probably trying to use the URL `https://github.com/icflorescu/openshift-cartridge-mongodb` instead of
 `http://cartreflect-claytondev.rhcloud.com/github/icflorescu/openshift-cartridge-mongodb`. A common mistake for people not paying sufficient attention while trying to use a custom cartridge for the first time.
 
+**Q**: How do I change the default `mongod` options?
+
+**A**: `ssh` into the gear (see [here](http://stackoverflow.com/questions/22759655/how-to-ssh-into-ha-application-gears) how if you're not running this cartirdge in your primary application gear), edit the [control script](https://github.com/icflorescu/openshift-cartridge-mongodb/blob/master/bin/control) with `nano mongodb/bin/control` and make sure to restart afterwards.
+
 ## Related
 
 Since you're here, chances are you might also be interested in this [custom Node.js cartridge](https://github.com/icflorescu/openshift-cartridge-nodejs).

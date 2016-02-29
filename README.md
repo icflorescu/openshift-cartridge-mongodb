@@ -14,9 +14,11 @@ When you need a quick and unsofisticated solution to run your application with t
 
 ## How to
 
-To install this cartridge in your existing OpenShift application, go to **"See the list of cartridges you can add"**, paste the URL below in **"Install your own cartridge"** textbox at the bottom of the page and click "Next".
+### Using [web console](https://openshift.redhat.com/app/console/applications)
 
-    http://cartreflect-claytondev.rhcloud.com/github/icflorescu/openshift-cartridge-mongodb
+Open your application in the [web console](https://openshift.redhat.com/app/console/applications), go to **"See the list of cartridges you can add"**, paste the URL below in **"Install your own cartridge"** textbox at the bottom of the page and click "Next".
+
+    https://raw.githubusercontent.com/icflorescu/openshift-cartridge-mongodb/master/metadata/manifest.yml
 
 Then you can use `MONGODB_URL` environment variable to connect from an application running in the main web cartridge.
 
@@ -28,6 +30,29 @@ For instance, here's how you'd do it in a Node.js application using [Mongoose OD
     ...
     // Mongoose will create database_name if necessary
     mongoose.connect(process.env.MONGODB_URL + 'database_name', { db: { nativeParser: true } });
+
+### Using the command line
+
+Make sure you have `rhc` installed (see [here](https://developers.openshift.com/en/managing-client-tools.html)).
+
+If you want to **add** a MongoDB instance based on this cartridge to an existing application:
+
+    rhc cartridge-add https://raw.githubusercontent.com/icflorescu/openshift-cartridge-mongodb/master/metadata/manifest.yml \
+      --app appname
+
+...where `appname` is the name of your application.
+
+To **create** an app based on the standard Node.js v0.10 cartridge and this one, run:
+
+    rhc app create appname \
+      nodejs-0.10 \
+      https://raw.githubusercontent.com/icflorescu/openshift-cartridge-mongodb/master/metadata/manifest.yml
+
+If you want to use **the latest Node.js version**, you'll have to use a [custom Node.js cartridge](https://github.com/icflorescu/openshift-cartridge-nodejs) as well:
+
+    rhc app create appname \
+      https://raw.githubusercontent.com/icflorescu/openshift-cartridge-nodejs/master/metadata/manifest.yml \
+      https://raw.githubusercontent.com/icflorescu/openshift-cartridge-mongodb/master/metadata/manifest.yml
 
 ## Notes
 
@@ -42,11 +67,21 @@ For instance, here's how you'd do it in a Node.js application using [Mongoose OD
 **Q**: I'm getting the error *Cannot download, must be smaller than 20480 bytes* while trying to deploy the cartridge to OpenShift. What am I doing wrong?
 
 **A**: You're probably trying to use the URL `https://github.com/icflorescu/openshift-cartridge-mongodb` instead of
-`http://cartreflect-claytondev.rhcloud.com/github/icflorescu/openshift-cartridge-mongodb`. A common mistake for people not paying sufficient attention while trying to use a custom cartridge for the first time.
+`https://raw.githubusercontent.com/icflorescu/openshift-cartridge-mongodb/master/metadata/manifest.yml`. A common mistake for people not paying sufficient attention while trying to use a custom cartridge for the first time.
+
+---
 
 **Q**: How do I change the default `mongod` options?
 
-**A**: `ssh` into the gear (see [here](http://stackoverflow.com/questions/22759655/how-to-ssh-into-ha-application-gears) how if you're not running this cartirdge in your primary application gear), edit the [control script](https://github.com/icflorescu/openshift-cartridge-mongodb/blob/master/bin/control) with `nano mongodb/bin/control` and make sure to restart afterwards.
+**A**: `ssh` to the MongoDB gear, edit the [control script](https://github.com/icflorescu/openshift-cartridge-mongodb/blob/master/bin/control) with `nano mongodb/bin/control` and make sure to restart afterwards.
+
+---
+
+**Q:** How can I `ssh` to a MongoDB cartridge running in a secondary application gear?
+
+**A:** You can discover the secondary gear URL by running `rhc app show appname --gears`.
+
+If you're
 
 ## Related
 

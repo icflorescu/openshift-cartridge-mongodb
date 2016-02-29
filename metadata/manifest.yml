@@ -7,7 +7,7 @@ Vendor: www.mongodb.org
 Website: http://www.mongodb.org/
 Display-Name: MongoDB 3.2.3
 Cartridge-Short-Name: MONGODB
-Cartridge-Version: '1.1.2'
+Cartridge-Version: '2.0.1'
 Cartridge-Vendor: icflorescu
 Source-Url: https://github.com/icflorescu/openshift-cartridge-mongodb.git
 Categories:

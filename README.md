@@ -60,7 +60,7 @@ If you want to use **the latest Node.js version**, you'll have to use a [custom 
 - This is a lean cartridge. To save space, just `mongod` is installed. No client libraries, no `mongo` console. **If you need external access to your data, use `rhc port-forward`**.
 - By default, the underlying MongoDB instance will accept unauthenticated access, which should be fine for most typical usage scenarios. See [the discussion here](https://github.com/icflorescu/openshift-cartridge-mongodb/issues/1) for more info.
 - Can't think of a safe way to make this cartridge auto-updatable. For now we'll just have to use `mongodump`, destroy the cartridge, install the new version, then do a `mongorestore`.
-- Don't hesitate to make a pull-request with an updated version in [this file](https://github.com/icflorescu/openshift-cartridge-mongodb/blob/master/metadata/manifest.yml#L4) if you notice this cartridge version is behind  the latest stable [official MongoDB linux binary](http://www.mongodb.org/downloads).
+- Don't hesitate to make a pull-request with an updated version in [this file](https://github.com/icflorescu/openshift-cartridge-mongodb/blob/master/metadata/manifest.yml#L4) if you notice this cartridge version is behind the latest stable [official MongoDB linux binary](http://www.mongodb.org/downloads).
 
 ## FAQ
 
@@ -80,8 +80,6 @@ If you want to use **the latest Node.js version**, you'll have to use a [custom 
 **Q:** How can I `ssh` to a MongoDB cartridge running in a secondary application gear?
 
 **A:** You can discover the secondary gear URL by running `rhc app show appname --gears`.
-
-If you're
 
 ## Related
 

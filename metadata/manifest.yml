@@ -1,13 +1,13 @@
 Name: mongodb
-Description: MongoDB cartridge version 3.2.3.
-Version: '3.2.3'
+Description: MongoDB cartridge version 3.2.4.
+Version: '3.2.4'
 License: MongoDB License
 License-Url: http://www.mongodb.org/about/licensing/
 Vendor: www.mongodb.org
 Website: http://www.mongodb.org/
-Display-Name: MongoDB 3.2.3
+Display-Name: MongoDB 3.2.4
 Cartridge-Short-Name: MONGODB
-Cartridge-Version: '2.0.1'
+Cartridge-Version: '2.0.2'
 Cartridge-Vendor: icflorescu
 Source-Url: https://github.com/icflorescu/openshift-cartridge-mongodb.git
 Categories:

@@ -15,14 +15,15 @@ function start() {
     client_result 'MongoDB is already running.'
   else
     client_message 'Starting MongoDB...'
-    nohup ${OPENSHIFT_DATA_DIR}.mongodb/bin/mongod \
-      --nounixsocket                               \
-      --storageEngine wiredTiger                   \
-      --dbpath ${OPENSHIFT_DATA_DIR}.mongodb/data  \
-      --bind_ip $OPENSHIFT_MONGODB_IP              \
-      --quiet                                      \
-      --logRotate reopen                           \
-      --logappend                                  \
+    nohup ${OPENSHIFT_DATA_DIR}.mongodb/bin/mongod     \
+      --nounixsocket                                   \
+      --storageEngine wiredTiger                       \
+      --wiredTigerEngineConfigString="cache_size=256M" \
+      --dbpath ${OPENSHIFT_DATA_DIR}.mongodb/data      \
+      --bind_ip $OPENSHIFT_MONGODB_IP                  \
+      --quiet                                          \
+      --logRotate reopen                               \
+      --logappend                                      \
       |& /usr/bin/logshifter -tag mongodb &
     i=0
     while ! is_running && [ $i -lt 60 ]; do
